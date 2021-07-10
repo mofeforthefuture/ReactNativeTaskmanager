@@ -10,28 +10,17 @@ import TodosContainer from '../components/TodosContainer';
 let dataid = 0;
 export const DATA =
     [
-        {
-            id: dataid,
-            text: 'First Item',
-        },
-        {
-            id: dataid,
-            text: 'Second Item',
-        },
-        {
-            id: dataid,
-            text: 'Third Item',
-        },
-        {
-            id: dataid,
-            text: 'Third Item',
-        },
+        // {
+        //     id: dataid,
+        //     text: 'First Item',
+        // },
+
 
     ];
 export default function Todo() {
     const [isModalVisible, setModalVisible] = useState(false);
     const [results, setResult] = useState(DATA)
-    const [text, setText] = useState('hdhd');
+    const [text, setText] = useState('');
 
     const toggle = () => {
         if (!isModalVisible) {
@@ -48,8 +37,10 @@ export default function Todo() {
     }
     const handleSubmit = () => {
         setModalVisible(false);
-        results.push({ id: results.length + 1, text: text });
-        console.log(results);
+        if (text.length >= 1) {
+            results.push({ id: results.length + 1, text: text });
+            console.log(results);
+        }
         setText('')
 
     }
@@ -67,12 +58,11 @@ export default function Todo() {
                 <SafeAreaView style={{ marginBottom: 20 }}></SafeAreaView>
 
                 <Modal isVisible={isModalVisible}>
-                    <View style={{ backgroundColor: 'white', width: '100%', height: '30%', alignItems: 'center' }}>
+                    <View style={{ backgroundColor: 'white', width: '100%', height: '30%', alignItems: 'center', }}>
                         <View style={{
                             width: '90%',
                             height: 40,
                             backgroundColor: '#ccc',
-                            marginLeft: '5%',
                             marginTop: 10,
                             justifyContent: 'center',
                             paddingLeft: 10,
@@ -90,7 +80,11 @@ export default function Todo() {
                             borderRadius: 7,
 
                         }}>
-                            <Text style={{}}>Create</Text>
+                            <Text style={{
+                                fontWeight: '600',
+                                fontSize: 20,
+                                position: 'relative',
+                            }}>Create</Text>
                         </TouchableOpacity>
                     </View>
                 </Modal>
@@ -112,12 +106,30 @@ export default function Todo() {
 
                 </TouchableOpacity>
                 <View style={{ height: '74%' }}>
-                    <FlatList
-                        data={results}
-                        renderItem={renderItem}
-                        keyExtractor={item => item.id}
-                    />
+                    {results.length ?
+                        <FlatList
+                            data={results}
+                            renderItem={renderItem}
+                            keyExtractor={item => item.id}
+                        /> :
+                        <View style={{ alignItems: 'center' }}>
+                            <Text style={{
+                                color: '#000',
+                                fontWeight: '100',
+                                fontSize: 30,
+                                position: 'relative',
+                                top: 60
+                            }}>No todos yet😀</Text>
 
+                            <Text style={{
+                                color: '#000',
+                                fontWeight: '100',
+                                fontSize: 30,
+                                position: 'relative',
+                                top: 60
+                            }}>Add a new todo👍</Text>
+                        </View>
+                    }
                 </View>
             </View>
         </>

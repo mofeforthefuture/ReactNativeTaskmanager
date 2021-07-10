@@ -29,7 +29,7 @@ export default function Home() {
                 <Image source={require(image)} style={{ height: '100%' }} />
             </View>
             <View style={{
-                flex: 1, backgroundColor: '#fff',
+                flex: 1, backgroundColor: 'rgba(120, 160, 241, 0.4)',
                 alignItems: 'center',
 
             }}>

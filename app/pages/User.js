@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, Text, Image, TouchableOpacity } from 'react-native'
 
-export default function User() {
+export default function User({ navigation }) {
     return (
         <>
             <View style={{
@@ -59,11 +59,13 @@ export default function User() {
                         alignItems: 'center',
                         justifyContent: 'center',
                     }}>
-                        <Text style={{
-                            fontWeight: '600',
-                            fontSize: 20,
-                            position: 'relative',
-                        }}>Logout</Text>
+                        <Text
+                            onPress={() => navigation.navigate('Welcome')}
+                            style={{
+                                fontWeight: '600',
+                                fontSize: 20,
+                                position: 'relative',
+                            }}>Logout</Text>
                     </TouchableOpacity>
                 </View>
             </View>

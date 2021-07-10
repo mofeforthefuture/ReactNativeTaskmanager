@@ -31,7 +31,6 @@ export default function TodosContainer({ text, index, deleted }) {
                 marginBottom: 10,
                 overflow: 'hidden',
                 flexDirection: 'row',
-                ...styles.shadow
 
             }}>
                 <View

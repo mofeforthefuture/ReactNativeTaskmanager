@@ -1,3 +1,4 @@
+import 'react-native-gesture-handler';
 import * as React from 'react';
 import Todo from '../pages/Todo'
 import Home from '../pages/Home'
@@ -13,23 +14,18 @@ const Tab = createBottomTabNavigator();
 
 
 
-export default function MainScreens() {
+export default function Main() {
     return (
         <Tab.Navigator
             tabBarOptions={{
                 showLabel: false,
                 style: {
-                    position: 'relative',
-                    bottom: 25,
-                    left: '5%',
+
                     elevation: 0,
-                    backgroundColor: '#ccc',
-                    borderRadius: 15,
+                    backgroundColor: '#fff',
                     height: 90,
-                    width: '90%',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    ...styles.shadow
                 }
             }}>
             <Tab.Screen name="Todo" component={Todo} options={{

@@ -8,7 +8,7 @@ export default function Welcome({ navigation }) {
         <>
             <View style={{
                 flex: 1,
-                backgroundColor: 'rgba(120, 160, 241, 0.4)',
+                backgroundColor: 'rgba(34, 31, 96, 1)',
                 alignItems: 'center'
             }}>
                 <SafeAreaView></SafeAreaView>

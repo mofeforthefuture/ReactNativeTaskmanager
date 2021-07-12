@@ -54,7 +54,7 @@ export default function Todo() {
     }
     return (
         <>
-            <View style={{ flex: 1, backgroundColor: 'rgba(120, 160, 241, 0.4)' }}>
+            <View style={{ flex: 1, backgroundColor: 'rgba(34, 31, 96, 1)' }}>
                 <SafeAreaView style={{ marginBottom: 20 }}></SafeAreaView>
 
                 <Modal isVisible={isModalVisible}>
@@ -93,7 +93,7 @@ export default function Todo() {
                     width: 60,
                     height: 60,
                     borderRadius: 30,
-                    backgroundColor: 'rgba(0, 191, 255, 1)',
+                    backgroundColor: '#000',
                     alignItems: 'center',
                     justifyContent: 'center',
                     position: 'absolute',
@@ -114,7 +114,7 @@ export default function Todo() {
                         /> :
                         <View style={{ alignItems: 'center' }}>
                             <Text style={{
-                                color: '#000',
+                                color: '#fff',
                                 fontWeight: '100',
                                 fontSize: 30,
                                 position: 'relative',
@@ -122,7 +122,7 @@ export default function Todo() {
                             }}>No todos yet😀</Text>
 
                             <Text style={{
-                                color: '#000',
+                                color: '#fff',
                                 fontWeight: '100',
                                 fontSize: 30,
                                 position: 'relative',

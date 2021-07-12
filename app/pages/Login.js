@@ -9,12 +9,12 @@ export default function Login({ navigation }) {
         <>
             <View style={{
                 flex: 1,
-                backgroundColor: 'rgba(120, 160, 241, 0.4)',
+                backgroundColor: 'rgba(34, 31, 96, 1)',
                 alignItems: 'center'
             }}>
                 <SafeAreaView></SafeAreaView>
                 <Text style={{
-                    color: '#000',
+                    color: '#fff',
                     fontWeight: '600',
                     fontSize: 40,
                     position: 'relative',
@@ -54,7 +54,7 @@ export default function Login({ navigation }) {
                 <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
                     <Text
                         style={{
-                            color: 'purple',
+                            color: '#fff',
                             position: 'relative',
                             top: 153,
                         }}

@@ -1,35 +1,36 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Text, View, TouchableOpacity, Image } from 'react-native'
+import Spinner from 'react-native-loading-spinner-overlay';
+
+
 
 export default function Home() {
-    let image = '../assets/morning.jpeg';
-    // var d = new Date();
-    // var hh = d.getHours();
-    // function greetDisplay() {
+    const [loading, setLoading] = useState(false);
+    const [data, setData] = useState(null);
 
-    //     var displayText = 'Good morning'
-    //     if (hh >= 0 && hh <= 12) {
-    //         let image = '../assets/morning.jpeg';
-    //         let displayText = 'Good morning'
-    //     } else if (hh >= 12 && hh <= 16) {
-    //         let image = '../assets/afternoon.jpeg';
-    //         let displayText = 'Good afternoon'
-    //     } else {
-    //         let image = '../assets/evening.jpeg';
-    //         let displayText = 'Good evening'
-    //     }
-    //     const arr = [image, displayText]
-    //     return arr;
-    // }
-    // setInterval(greetDisplay, 1000);
+
+    useEffect(() => {
+        setLoading(true);
+        fetch('https://jsonplaceholder.typicode.com/todos/50')
+            .then(response => response.json())
+            .then(json => console.log(json))
+            .catch(console.error)
+            .finally(() => setLoading(false));
+    }, []);
+    let image = '../assets/morning.jpeg';
+
 
     return (
         <>
             <View style={{ flex: 1 }}>
+                <Spinner
+                    visible={loading}
+                    textContent={'Loading...'}
+                />
                 <Image source={require(image)} style={{ height: '100%' }} />
             </View>
             <View style={{
-                flex: 1, backgroundColor: 'rgba(120, 160, 241, 0.4)',
+                flex: 1, backgroundColor: 'rgba(34, 31, 96, 1)',
                 alignItems: 'center',
 
             }}>

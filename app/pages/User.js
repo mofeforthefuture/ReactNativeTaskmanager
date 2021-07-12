@@ -1,5 +1,8 @@
 import React from 'react'
 import { View, Text, Image, TouchableOpacity } from 'react-native'
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
+import { faCamera } from '@fortawesome/free-solid-svg-icons'
+
 
 export default function User({ navigation }) {
     return (
@@ -10,7 +13,7 @@ export default function User({ navigation }) {
 
                 <View style={{
                     flex: 1,
-                    backgroundColor: 'rgba(120, 160, 241, 0.4)'
+                    backgroundColor: 'rgba(34, 31, 96, 1)'
                 }}>
 
                 </View>
@@ -37,6 +40,19 @@ export default function User({ navigation }) {
                             position: 'relative',
 
                         }} />
+                        <TouchableOpacity style={{
+                            position: 'absolute',
+                            backgroundColor: '#ccc',
+                            width: 30,
+                            height: 30,
+                            borderRadius: 15,
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            top: 150,
+                            left: 150,
+                        }}>
+                            <FontAwesomeIcon icon={faCamera} size={22} color={'#000'} />
+                        </TouchableOpacity>
 
                     </View>
                     <Text style={{
@@ -52,7 +68,7 @@ export default function User({ navigation }) {
                     alignItems: 'center'
                 }}>
                     <TouchableOpacity style={{
-                        backgroundColor: 'rgba(120, 160, 241, 0.4)',
+                        backgroundColor: 'rgba(34, 31, 96, 1)',
                         width: 120,
                         height: 40,
                         borderRadius: 10,

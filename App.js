@@ -1,7 +1,7 @@
 import 'react-native-gesture-handler';
 import * as React from 'react';
 // import Todo from './app/pages/Todo'
-// import Home from './app/pages/Home'
+// import Dm from './app/pages/Dm'
 // import User from './app/pages/User';
 import { StyleSheet, View, Text, Image } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
@@ -10,7 +10,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import Welcome from './app/pages/Welcome';
 import SignUp from './app/pages/SignUp';
 import Login from './app/pages/Login';
-import Main from './app/screens/Main.stack';
+import Main from './app/stacks/Main.stack';
 
 
 
@@ -31,7 +31,7 @@ export default function App() {
 // import 'react-native-gesture-handler';
 // import * as React from 'react';
 // import Todo from './app/pages/Todo'
-// import Home from './app/pages/Home'
+// import Dm from './app/pages/Dm'
 // import User from './app/pages/User';
 // import { StyleSheet, View, Text, Image } from 'react-native';
 // import { NavigationContainer } from '@react-navigation/native';
@@ -77,7 +77,7 @@ export default function App() {
 //             </View>
 //           )
 //         }} />
-//         <Tab.Screen name="Home" component={Home} options={{
+//         <Tab.Screen name="Dm" component={Dm} options={{
 //           tabBarIcon: ({ focused }) => (
 //             <View style={{
 //               alignItems: 'center',
@@ -85,7 +85,7 @@ export default function App() {
 //               top: 10,
 //             }}>
 //               <FontAwesomeIcon icon={faHome} size={25} color={focused ? 'rgba(110, 130, 232, 1)' : 'black'} />
-//               <Text style={{ color: focused ? 'rgba(110, 130, 232, 1)' : 'black', fontWeight: '600' }}>Home</Text>
+//               <Text style={{ color: focused ? 'rgba(110, 130, 232, 1)' : 'black', fontWeight: '600' }}>Dm</Text>
 //             </View>
 //           )
 //         }} />

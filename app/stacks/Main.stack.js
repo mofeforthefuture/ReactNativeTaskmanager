@@ -1,13 +1,13 @@
 import 'react-native-gesture-handler';
 import * as React from 'react';
 import Todo from '../pages/Todo'
-import Home from '../pages/Home'
 import User from '../pages/User';
+import Chat from './Chat.stack';
 import { TouchableOpacity, StyleSheet, View, Text, Image } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 
-import { faList, faHome, faUser } from '@fortawesome/free-solid-svg-icons'
+import { faList, faComment, faUser } from '@fortawesome/free-solid-svg-icons'
 
 const Tab = createBottomTabNavigator();
 
@@ -40,15 +40,15 @@ export default function Main() {
                     </View>
                 )
             }} />
-            <Tab.Screen name="Home" component={Home} options={{
+            <Tab.Screen name="Chat" component={Chat} options={{
                 tabBarIcon: ({ focused }) => (
                     <View style={{
                         alignItems: 'center',
                         justifyContent: 'center',
                         top: 10,
                     }}>
-                        <FontAwesomeIcon icon={faHome} size={25} color={focused ? 'rgba(110, 130, 232, 1)' : 'black'} />
-                        <Text style={{ color: focused ? 'rgba(110, 130, 232, 1)' : 'black', fontWeight: '600' }}>Home</Text>
+                        <FontAwesomeIcon icon={faComment} size={25} color={focused ? 'rgba(110, 130, 232, 1)' : 'black'} />
+                        <Text style={{ color: focused ? 'rgba(110, 130, 232, 1)' : 'black', fontWeight: '600' }}>Chat</Text>
                     </View>
                 )
             }} />

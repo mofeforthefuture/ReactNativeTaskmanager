@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { View, Text, FlatList, SafeAreaView, TouchableOpacity, } from 'react-native'
 import Appline from '../components/Appline'
+import { COLORS, } from '../constants/themes';
 
 
 const Data = [

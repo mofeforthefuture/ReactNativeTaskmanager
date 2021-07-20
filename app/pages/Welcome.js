@@ -1,6 +1,7 @@
 import React from 'react'
 import { View, Text, SafeAreaView, } from 'react-native';
 import AppBtn from '../components/AppBtn';
+import { COLORS, } from '../constants/themes';
 
 
 export default function Welcome({ navigation }) {
@@ -8,7 +9,7 @@ export default function Welcome({ navigation }) {
         <>
             <View style={{
                 flex: 1,
-                backgroundColor: 'rgba(34, 31, 96, 1)',
+                backgroundColor: COLORS.purple,
                 alignItems: 'center'
             }}>
                 <SafeAreaView></SafeAreaView>

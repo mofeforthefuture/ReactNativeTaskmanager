@@ -4,7 +4,8 @@ import Spinner from 'react-native-loading-spinner-overlay';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faCaretRight } from '@fortawesome/free-solid-svg-icons'
 import ChatTxt from '../components/ChatTxt';
-
+import { COLORS, } from '../constants/themes';
+import ActivityIndicator from '../components/ActivityIndicator';
 
 export default function Dm() {
     const [loading, setLoading] = useState(true);
@@ -54,9 +55,8 @@ export default function Dm() {
     return (
         <>
             <View style={{ flex: 1, }}>
-                <Spinner
+                <ActivityIndicator
                     visible={loading}
-                    textContent={'Loading...'}
                 />
                 <View style={{
                     height: '93%',
@@ -102,20 +102,20 @@ export default function Dm() {
                             justifyContent: 'center',
                             marginLeft: '1%'
                         }}>
-                        <FontAwesomeIcon icon={faCaretRight} size={30} color='#fff' />
+                        <FontAwesomeIcon icon={faCaretRight} size={30} color={COLORS.white} />
 
                     </TouchableOpacity>
                 </View>
                 {/* <Image source={require(image)} style={{ height: '100%' }} />
             </View>
             <View style={{
-                flex: 1, backgroundColor: 'rgba(34, 31, 96, 1)',
+                flex: 1, backgroundColor: COLORS.purple,
                 alignItems: 'center',
 
             }}>
                 <Text style={{
                     fontSize: 28,
-                    color: '#fff',
+                    color: COLORS.white,
                     position: 'relative',
                     bottom: 100
                 }}>Good morning Mofe!!</Text> */}

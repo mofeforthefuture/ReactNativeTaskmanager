@@ -1,10 +1,46 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { View, Text, Image, TouchableOpacity } from 'react-native'
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
-import { faCamera } from '@fortawesome/free-solid-svg-icons'
+import { faCamera, faTruck } from '@fortawesome/free-solid-svg-icons'
+import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
+import Modal from 'react-native-modal';
+import { COLORS, } from '../constants/themes';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 export default function User({ navigation }) {
+    const [isModalVisible, setModalVisible] = useState(false);
+    const [name, setName] = useState('greatMofe')
+    useEffect(() => {
+        getData()
+    }, [])
+
+    const getData = () => {
+        try {
+            AsyncStorage.getItem('userDetails')
+                .then(value => {
+                    if (value != null) {
+                        const user = JSON.parse(value)
+                        console.log(user[0].Name);
+                        setName(user[0].Name)
+                    }
+                })
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    let options = {
+        title: 'You can choose one image',
+        maxWidth: 256,
+        maxHeight: 256,
+        noData: true,
+        mediaType: 'photo',
+        storageOptions: {
+            skipBackup: true
+        }
+    };
+    const mofe = require('../assets/user.png');
+    let [sourceImg, setSource] = useState(require('../assets/user.png'))
     return (
         <>
             <View style={{
@@ -13,16 +49,32 @@ export default function User({ navigation }) {
 
                 <View style={{
                     flex: 1,
-                    backgroundColor: 'rgba(34, 31, 96, 1)'
+                    backgroundColor: COLORS.purple
                 }}>
 
+                    <Modal isVisible={isModalVisible} style={{ alignItems: 'center', justifyContent: 'center' }}>
+                        <TouchableOpacity onPress={() => setModalVisible(false)} style={{
+                            width: 50,
+                            height: 50,
+                            backgroundColor: COLORS.white,
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                        }}>
+                            <Text>X</Text>
+                        </TouchableOpacity>
+                        <Image source={mofe} style={{
+                            height: '50%',
+                            width: '100%',
+                            position: 'relative',
+                        }} />
+                    </Modal>
                 </View>
                 <View style={{
                     flex: 1,
                     alignItems: 'center'
                 }}>
                     <View style={{
-                        backgroundColor: '#fff',
+                        backgroundColor: COLORS.white,
                         height: 200,
                         width: 200,
                         borderRadius: 100,
@@ -32,25 +84,34 @@ export default function User({ navigation }) {
                         justifyContent: 'center',
 
                     }}>
-                        <Image source={require('../assets/user.png')} style={{
-                            backgroundColor: '#000',
-                            height: 190,
-                            width: 190,
-                            borderRadius: 95,
-                            position: 'relative',
+                        <TouchableOpacity onPress={() => setModalVisible(true)}>
+                            <Image source={sourceImg} style={{
+                                height: 190,
+                                width: 190,
+                                borderRadius: 95,
+                                position: 'relative',
 
-                        }} />
-                        <TouchableOpacity style={{
-                            position: 'absolute',
-                            backgroundColor: '#ccc',
-                            width: 30,
-                            height: 30,
-                            borderRadius: 15,
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            top: 150,
-                            left: 150,
-                        }}>
+                            }} />
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            onPress={() => launchImageLibrary(options, response => {
+                                if (response.didCancel) {
+                                    console.log('User cancelled photo picker');
+                                    console.log(response);
+                                    alert('You did not select any image');
+                                } else if (response.error) {
+                                    console.log(response);
+
+                                    console.log('ImagePicker Error: ', response.error);
+                                } else if (response.customButton) {
+                                    console.log('User tapped custom button: ', response.customButton);
+                                    console.log(response);
+
+                                } else {
+                                    let source = { uri: response.uri };
+                                }
+                            })}
+                            style={{}}>
                             <FontAwesomeIcon icon={faCamera} size={22} color={'#000'} />
                         </TouchableOpacity>
 
@@ -61,26 +122,28 @@ export default function User({ navigation }) {
                         fontSize: 25,
                         position: 'relative',
                         bottom: 60
-                    }}>Great Mofe</Text>
+                    }}>{name}</Text>
                 </View>
                 <View style={{
                     flex: 1,
                     alignItems: 'center'
                 }}>
-                    <TouchableOpacity style={{
-                        backgroundColor: 'rgba(34, 31, 96, 1)',
-                        width: 120,
-                        height: 40,
-                        borderRadius: 10,
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                    }}>
+                    <TouchableOpacity
+                        onPress={() => navigation.navigate('Welcome')}
+                        style={{
+                            backgroundColor: COLORS.purple,
+                            width: 120,
+                            height: 40,
+                            borderRadius: 10,
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                        }}>
                         <Text
-                            onPress={() => navigation.navigate('Welcome')}
                             style={{
                                 fontWeight: '600',
                                 fontSize: 20,
                                 position: 'relative',
+                                color: COLORS.white
                             }}>Logout</Text>
                     </TouchableOpacity>
                 </View>

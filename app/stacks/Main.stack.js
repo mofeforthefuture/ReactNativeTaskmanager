@@ -8,7 +8,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 
 import { faList, faComment, faUser } from '@fortawesome/free-solid-svg-icons'
-
+import { COLORS } from '../constants/themes';
 const Tab = createBottomTabNavigator();
 
 
@@ -22,7 +22,7 @@ export default function Main() {
                 style: {
 
                     elevation: 0,
-                    backgroundColor: '#fff',
+                    backgroundColor: COLORS.white,
                     height: 90,
                     alignItems: 'center',
                     justifyContent: 'center',

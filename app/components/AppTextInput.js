@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, Text, TextInput } from 'react-native'
 
-export default function AppTextInput({ placeholder, top, onPress }) {
+export default function AppTextInput({ placeholder, top, onPress, onChangeText, onBlur, secureTextEntry, value }) {
     return (
         <View
             onPress={onPress}
@@ -10,7 +10,7 @@ export default function AppTextInput({ placeholder, top, onPress }) {
                 width: '90%',
                 height: 60,
                 borderRadius: 10,
-                marginBottom: 20,
+                marginBottom: 10,
                 top: top,
                 justifyContent: 'center',
                 paddingLeft: 15,
@@ -21,6 +21,13 @@ export default function AppTextInput({ placeholder, top, onPress }) {
                 placeholder={placeholder}
                 placeholderTextColor={'#ccc'}
                 fontSize={18}
+                onChangeText={onChangeText}
+                onBlur={onBlur}
+                secureTextEntry={secureTextEntry}
+                value={value}
+                style={{
+                    color: '#ccc',
+                }}
             />
         </View>
     )

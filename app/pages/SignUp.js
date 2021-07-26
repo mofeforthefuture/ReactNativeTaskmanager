@@ -48,13 +48,13 @@ export default function SignUp({ navigation }) {
                 if (data.message) {
                     setMessage(data.message)
                     setErr('')
+                    navigation.navigate('Login')
                 } else {
                     setErr(data)
                     setMessage('')
                 }
             })
         setIsVisible(false)
-        navigation.navigate('Login')
     }
     return (
         <>
@@ -99,28 +99,28 @@ export default function SignUp({ navigation }) {
                             >
                                 {message ? <Text style={{ color: 'green', width: '80%' }}>{message}</Text> : null}
                                 {err ? <Text style={{ color: 'red', width: '80%' }}>{err}</Text> : null}
-                                {formikProps.touched.firstName || formikProps.errors.firstName ?
+                                {formikProps.touched.firstName && formikProps.errors.firstName ?
                                     <Text style={{ color: 'red', width: '80%' }}>{formikProps.touched.firstName && formikProps.errors.firstName}</Text> : null}
                                 <AppTextInput
                                     placeholder={'First name'}
                                     onChangeText={formikProps.handleChange('firstName')}
                                     onBlur={formikProps.handleBlur('firstName')}
                                 />
-                                {formikProps.touched.lastName || formikProps.errors.lastName ?
+                                {formikProps.touched.lastName && formikProps.errors.lastName ?
                                     <Text style={{ color: 'red', width: '80%' }}>{formikProps.touched.lastName && formikProps.errors.lastName}</Text> : null}
                                 <AppTextInput
                                     onBlur={formikProps.handleBlur('lastName')}
                                     onChangeText={formikProps.handleChange('lastName')}
                                     placeholder={'Last name'}
                                 />
-                                {formikProps.touched.name || formikProps.errors.name ?
+                                {formikProps.touched.name && formikProps.errors.name ?
                                     <Text style={{ color: 'red', width: '80%' }}>{formikProps.touched.name && formikProps.errors.name}</Text> : null}
                                 <AppTextInput
                                     onBlur={formikProps.handleBlur('name')}
                                     onChangeText={formikProps.handleChange('name')}
                                     placeholder={'Username'}
                                 />
-                                {formikProps.touched.password || formikProps.errors.password ?
+                                {formikProps.touched.password && formikProps.errors.password ?
                                     <Text style={{ color: 'red', width: '80%' }}>{formikProps.touched.password && formikProps.errors.password}</Text> : null}
                                 <AppTextInput
                                     onBlur={formikProps.handleBlur('password')}
@@ -128,7 +128,7 @@ export default function SignUp({ navigation }) {
                                     placeholder={'Password'}
                                     secureTextEntry={true}
                                 />
-                                {formikProps.touched.confirmPassword || formikProps.errors.confirmPassword ?
+                                {formikProps.touched.confirmPassword && formikProps.errors.confirmPassword ?
                                     <Text style={{ color: 'red', width: '80%' }}>{formikProps.touched.confirmPassword && formikProps.errors.confirmPassword}</Text> : null}
                                 <AppTextInput
                                     onBlur={formikProps.handleBlur('confirmPassword')}

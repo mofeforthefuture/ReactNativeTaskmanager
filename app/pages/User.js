@@ -10,25 +10,31 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function User({ navigation }) {
     const [isModalVisible, setModalVisible] = useState(false);
-    const [name, setName] = useState('greatMofe')
+    const [userSession, setUserdata] = useState('')
     useEffect(() => {
-        getData()
+        getData();
+        // clearDataFromStorage()
     }, [])
 
-    const getData = () => {
+    const getData = async () => {
         try {
-            AsyncStorage.getItem('userDetails')
-                .then(value => {
-                    if (value != null) {
-                        const user = JSON.parse(value)
-                        console.log(user[0].Name);
-                        setName(user[0].Name)
-                    }
-                })
+            const data = await AsyncStorage.getItem("userDetails");
+            if (data !== null) {
+                console.log('... data from storage', JSON.parse(data));
+                const session = JSON.parse(data)
+                setUserdata(session)
+            } else {
+                console.log('no data from storage...null');
+            }
         } catch (error) {
-            console.log(error);
+            console.log('...Error fetching data from storage', error);
         }
     }
+
+    const clearDataFromStorage = async () => {
+        AsyncStorage.clear();
+    }
+
     let options = {
         title: 'You can choose one image',
         maxWidth: 256,
@@ -122,7 +128,7 @@ export default function User({ navigation }) {
                         fontSize: 25,
                         position: 'relative',
                         bottom: 60
-                    }}>{name}</Text>
+                    }}>{userSession && userSession.Name}</Text>
                 </View>
                 <View style={{
                     flex: 1,

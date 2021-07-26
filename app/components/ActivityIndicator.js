@@ -10,7 +10,7 @@ function ActivityIndicator({ visible }) {
             justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(255, 255, 255,  0)'
         }}>
             <View style={{ width: 150, height: 200, }}>
-                <LottieView source={require('./lottie-loader.json')} autoPlay loop />
+                <LottieView source={require('./loader3.json')} autoPlay loop />
 
             </View>
 

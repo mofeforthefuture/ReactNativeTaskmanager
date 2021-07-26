@@ -5,29 +5,31 @@ import Modal from 'react-native-modal';
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import TodosContainer from '../components/TodosContainer';
 import { COLORS, } from '../constants/themes';
+import LottieView from 'lottie-react-native';
 import ActivityIndicator from '../components/ActivityIndicator';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import Notodo from '../components/noTodo';
 
 
 
 //username and password
-let dataid = 0;
 export const DATA =
     [
         // {
-        //     id: dataid,
-        //     text: 'First Item',
+        //     userId: ID,
+        //     task: text,
         // },
 
 
     ];
 export default function Todo() {
     const [isModalVisible, setModalVisible] = useState(false);
-    const [results, setResult] = useState(DATA)
+    const [results, setResult] = useState([])
     const [text, setText] = useState('');
+    const [ID, setID] = useState('')
     const [loading, isloading] = useState(false)
+    const value = { userId: ID, task: text }
 
-    const [userID, setUserID] = useState(2)
     useEffect(() => {
         getData()
     }, [])
@@ -38,29 +40,30 @@ export default function Todo() {
             AsyncStorage.getItem('userDetails')
                 .then(res => {
                     if (res != null) {
-                        const user = JSON.parse(res)
-                        console.log('user', user);
+                        const ID = JSON.parse(res).ID
+                        setID(ID)
+                        getTodos(ID)
                     }
                 })
         } catch (error) {
             console.log(error);
         }
     }
-    // const getTodos = async () => {
-    //     isloading(true)
-    //     await fetch(`https://enigmatic-plains-12808.herokuapp.com/api/todo/${userID}`, {
-    //         method: 'GET',
-    //         headers: {
-    //             'Accept': 'application/json',
-    //             'Content-type': 'application/json'
-    //         },
-    //     }).then(res => res.json())
-    //         .then(data => {
-    //             console.log(data)
-
-    //         })
-    //     isloading(false)
-    // }
+    const getTodos = async (userID) => {
+        isloading(true)
+        await fetch(`https://enigmatic-plains-12808.herokuapp.com/api/todo/${userID}`, {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-type': 'application/json'
+            },
+        }).then(res => res.json())
+            .then(data => {
+                console.log(data)
+                setResult(data)
+            })
+        isloading(false)
+    }
     const toggle = () => {
         if (!isModalVisible) {
             setModalVisible(true);
@@ -68,25 +71,55 @@ export default function Todo() {
             setModalVisible(false)
         }
     };
-    // const handleDelete = (item) => {
-    //     let itemIndex = item.id - 1;
-    //     console.log(results[itemIndex]);
 
-    // const newArr = results.splice(itemIndex, 1);
-    // setResult(newArr)
+    // const handleSubmit = () => {
+    //     setModalVisible(false);
+    //     if (text.length >= 1) {
+    //         results.push({ id: results.length + 1, text: text });
+    //         console.log(results);
+    //     }
+    //     setText('')
+
     // }
-    const handleSubmit = () => {
-        setModalVisible(false);
-        if (text.length >= 1) {
-            results.push({ id: results.length + 1, text: text });
-            console.log(results);
+    const handleSubmit = async () => {
+        if (text.length > 0) {
+            await fetch('https://enigmatic-plains-12808.herokuapp.com/api/todo', {
+                method: 'POST',
+                body: JSON.stringify(value),
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-type': 'application/json'
+                },
+            })
+            getTodos(ID)
+            setModalVisible(false)
+            setText('')
+        } else {
+            setModalVisible(false)
         }
-        setText('')
 
     }
+    const handleDelete = async (item) => {
+        console.log(item)
+        const response = await fetch(`https://enigmatic-plains-12808.herokuapp.com/api/todo/${item}`, {
+            method: 'DELETE',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify()
+        });
 
-    const renderItem = ({ item }) => (
-        <TodosContainer text={item.text} isComplete={item.isCompleted} deleted={() => handleDelete(item)} />
+        const data = await response.text();
+
+        // now do whatever you want with the data  
+        console.log(data);
+        getTodos(ID)
+    }
+
+
+    const renderItem = ({ item, index }) => (
+        <TodosContainer keys={item.id} text={item.Info} isComplete={item.isCompleted} deleted={() => handleDelete(item.Id)} />
     );
     for (let i = 0; i < results.length; i++) {
         results[i].id = i + 1;
@@ -169,8 +202,11 @@ export default function Todo() {
                                 fontWeight: '100',
                                 fontSize: 30,
                                 position: 'relative',
-                                top: 60
+                                top: 60,
+                                marginBottom: 50,
                             }}>Add a new todo👍</Text>
+                            <Notodo />
+
                         </View>
                     }
                 </View>

@@ -22,38 +22,35 @@ export default function Login({ navigation }) {
     const [userDet, setUserDet] = useState('')
     const [isVisible, setIsVisible] = useState(false)
 
-
     const login = async (value) => {
         setIsVisible(true)
         await fetch('https://enigmatic-plains-12808.herokuapp.com/user/login', {
             method: 'POST',
+            body: JSON.stringify(value),
             headers: {
                 'Accept': 'application/json',
                 'Content-type': 'application/json'
             },
-            body: JSON.stringify(value)
         }).then(res => res.json())
             .then(data => {
                 if (data) {
-                    console.log('====================================')
-                    console.log(data)
-                    console.log('====================================')
-                    setUserDet(data)
-                    setUserDetails()
+                    data = data[0]
+                    console.log('...response Obj', data)
+                    setUserDetails(data);
+                    setIsVisible(false)
                 } else {
                     console.log('error')
                 }
+            }).catch(error => {
+                console.log('...error', error);
             })
+
         navigation.navigate('Main')
-        console.log('====================================')
-        console.log('user details', userDet);
-        console.log('====================================')
-        setIsVisible(false)
     }
 
-    const setUserDetails = async () => {
+    const setUserDetails = async (data) => {
         try {
-            await AsyncStorage.setItem('userDetails', JSON.stringify(userDet))
+            await AsyncStorage.setItem('userDetails', JSON.stringify(data))
         } catch (error) {
             console.log(error)
         }
@@ -94,14 +91,14 @@ export default function Login({ navigation }) {
                                     top: 100
                                 }}
                             >
-                                {formikProps.touched.name || formikProps.errors.name ?
+                                {formikProps.touched.name && formikProps.errors.name ?
                                     <Text style={{ color: 'red', width: '80%' }}>{formikProps.touched.name && formikProps.errors.name}</Text> : <></>}
                                 <AppTextInput
                                     placeholder={'Username'}
                                     onChangeText={formikProps.handleChange('name')}
                                     onBlur={formikProps.handleBlur('name')}
                                 />
-                                {formikProps.touched.password || formikProps.errors.password ?
+                                {formikProps.touched.password && formikProps.errors.password ?
                                     <Text style={{ color: 'red', width: '80%' }}>{formikProps.touched.password && formikProps.errors.password}</Text> : <></>}
                                 <AppTextInput
                                     onChangeText={formikProps.handleChange('password')}

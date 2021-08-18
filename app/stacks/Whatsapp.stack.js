@@ -8,7 +8,6 @@ import Settings from '../pages/Settings'
 import { TouchableOpacity, StyleSheet, View, Text, Image } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
-
 import { faBullseye, faPhoneAlt, faCamera, faComments, faCog } from '@fortawesome/free-solid-svg-icons'
 import { COLORS } from '../constants/themes';
 const Tab = createBottomTabNavigator();
@@ -25,7 +24,7 @@ export default function Whatsapp() {
 
                     elevation: 0,
                     backgroundColor: COLORS.tabBlack,
-                    height: '7%',
+                    height: '10%',
                     alignItems: 'center',
                     justifyContent: 'center',
                 }

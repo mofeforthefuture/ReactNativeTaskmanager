@@ -23,7 +23,7 @@ export default function Main() {
 
                     elevation: 0,
                     backgroundColor: COLORS.white,
-                    height: 90,
+                    height: '10%',
                     alignItems: 'center',
                     justifyContent: 'center',
                 }

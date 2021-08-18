@@ -11,6 +11,7 @@ import Welcome from './app/pages/Welcome';
 import SignUp from './app/pages/SignUp';
 import Login from './app/pages/Login';
 import Main from './app/stacks/Main.stack';
+import Whatsapp from './app/stacks/Whatsapp.stack';
 
 
 
@@ -24,6 +25,7 @@ export default function App() {
         <Stack.Screen name="SignUp" component={SignUp} />
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Main" component={Main} />
+        <Stack.Screen name="Whatsapp" component={Whatsapp} />
       </Stack.Navigator>
     </NavigationContainer>
   );

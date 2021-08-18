@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { View, Text, Image, TouchableOpacity } from 'react-native'
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
-import { faCamera, faTruck } from '@fortawesome/free-solid-svg-icons'
+import { faCamera, faTimes, faPen } from '@fortawesome/free-solid-svg-icons'
 import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
 import Modal from 'react-native-modal';
 import { COLORS, } from '../constants/themes';
@@ -59,15 +59,47 @@ export default function User({ navigation }) {
                 }}>
 
                     <Modal isVisible={isModalVisible} style={{ alignItems: 'center', justifyContent: 'center' }}>
-                        <TouchableOpacity onPress={() => setModalVisible(false)} style={{
-                            width: 50,
-                            height: 50,
-                            backgroundColor: COLORS.white,
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                        }}>
-                            <Text>X</Text>
-                        </TouchableOpacity>
+                        <View style={{ flexDirection: 'row', position: 'absolute', top: '5%' }}>
+                            <TouchableOpacity
+                                onPress={() => launchImageLibrary(options, response => {
+                                    if (response.didCancel) {
+                                        console.log('User cancelled photo picker');
+                                        console.log(response);
+                                        alert('You did not select any image');
+                                    } else if (response.error) {
+                                        console.log(response);
+
+                                        console.log('ImagePicker Error: ', response.error);
+                                    } else if (response.customButton) {
+                                        console.log('User tapped custom button: ', response.customButton);
+                                        console.log(response);
+
+                                    } else {
+                                        console.log(response)
+                                    }
+                                })}
+                                style={{
+                                    width: 40,
+                                    height: 40,
+                                    borderRadius: 20,
+                                    backgroundColor: COLORS.fade,
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    marginRight: '70%'
+                                }}>
+                                <FontAwesomeIcon icon={faPen} color={COLORS.white} />
+                            </TouchableOpacity>
+                            <TouchableOpacity onPress={() => setModalVisible(false)} style={{
+                                width: 40,
+                                height: 40,
+                                borderRadius: 20,
+                                backgroundColor: COLORS.fade,
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                            }}>
+                                <FontAwesomeIcon icon={faTimes} color={COLORS.white} />
+                            </TouchableOpacity>
+                        </View>
                         <Image source={mofe} style={{
                             height: '50%',
                             width: '100%',
@@ -99,29 +131,31 @@ export default function User({ navigation }) {
 
                             }} />
                         </TouchableOpacity>
-                        <TouchableOpacity
-                            onPress={() => launchImageLibrary(options, response => {
-                                if (response.didCancel) {
-                                    console.log('User cancelled photo picker');
-                                    console.log(response);
-                                    alert('You did not select any image');
-                                } else if (response.error) {
-                                    console.log(response);
-
-                                    console.log('ImagePicker Error: ', response.error);
-                                } else if (response.customButton) {
-                                    console.log('User tapped custom button: ', response.customButton);
-                                    console.log(response);
-
-                                } else {
-                                    let source = { uri: response.uri };
-                                }
-                            })}
-                            style={{}}>
-                            <FontAwesomeIcon icon={faCamera} size={22} color={'#000'} />
-                        </TouchableOpacity>
 
                     </View>
+                    {/* <TouchableOpacity
+                        style={{ position: 'absolute' }}
+                        onPress={() => launchImageLibrary(options, response => {
+                            if (response.didCancel) {
+                                console.log('User cancelled photo picker');
+                                console.log(response);
+                                alert('You did not select any image');
+                            } else if (response.error) {
+                                console.log(response);
+
+                                console.log('ImagePicker Error: ', response.error);
+                            } else if (response.customButton) {
+                                console.log('User tapped custom button: ', response.customButton);
+                                console.log(response);
+
+                            } else {
+                                let source = { uri: response.uri };
+                                log(source)
+                            }
+                        })}
+                    >
+                        <FontAwesomeIcon icon={faCamera} size={22} color={'#000'} />
+                    </TouchableOpacity> */}
                     <Text style={{
                         color: 'rgba(149, 155, 167, 0.8)',
                         fontWeight: '600',
@@ -151,6 +185,24 @@ export default function User({ navigation }) {
                                 position: 'relative',
                                 color: COLORS.white
                             }}>Logout</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        onPress={() => navigation.navigate('Whatsapp')}
+                        style={{
+                            backgroundColor: COLORS.purple,
+                            width: 120,
+                            height: 40,
+                            borderRadius: 10,
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                        }}>
+                        <Text
+                            style={{
+                                fontWeight: '600',
+                                fontSize: 20,
+                                position: 'relative',
+                                color: COLORS.white
+                            }}>Whatsapp</Text>
                     </TouchableOpacity>
                 </View>
             </View>

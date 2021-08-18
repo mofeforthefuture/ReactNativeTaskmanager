@@ -133,7 +133,7 @@ export default function Todo() {
                 <SafeAreaView style={{ marginBottom: 20 }}></SafeAreaView>
                 <ActivityIndicator visible={loading} />
                 <Modal isVisible={isModalVisible}>
-                    <View style={{ backgroundColor: 'white', width: '100%', height: '30%', alignItems: 'center', }}>
+                    <View style={{ backgroundColor: COLORS.fade, width: '100%', height: '30%', alignItems: 'center', }}>
                         <View style={{
                             width: '90%',
                             height: 40,
@@ -143,13 +143,15 @@ export default function Todo() {
                             paddingLeft: 10,
                             borderRadius: 15,
                             marginBottom: 10,
+                            borderColor: COLORS.purple,
+                            borderWidth: 1
                         }}>
-                            <TextInput placeholder={'Add a new todo'} value={text} onChangeText={setText} />
+                            <TextInput placeholder={'Add a new todo'} value={text} onChangeText={setText} placeholderTextColor={COLORS.black} />
                         </View>
                         <TouchableOpacity onPress={handleSubmit} style={{
                             width: 80,
                             height: 30,
-                            backgroundColor: 'rgba(0, 191, 255, 1)',
+                            backgroundColor: COLORS.purple,
                             alignItems: 'center',
                             justifyContent: 'center',
                             borderRadius: 7,
@@ -159,6 +161,7 @@ export default function Todo() {
                                 fontWeight: '600',
                                 fontSize: 20,
                                 position: 'relative',
+                                color: COLORS.white,
                             }}>Create</Text>
                         </TouchableOpacity>
                     </View>

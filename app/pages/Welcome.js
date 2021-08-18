@@ -14,7 +14,7 @@ export default function Welcome({ navigation }) {
             }}>
                 <SafeAreaView></SafeAreaView>
                 <Text style={{
-                    color: '#000',
+                    color: COLORS.white,
                     fontWeight: '600',
                     fontSize: 40,
                     position: 'relative',
@@ -29,7 +29,7 @@ export default function Welcome({ navigation }) {
                     width={'90%'}
                     height={60}
                     borderRadius={10}
-                    top={560}
+                    top={'69%'}
                     fontWeight={'600'}
                     fontSize={25}
                     onPress={() => navigation.push('Login')}
@@ -40,7 +40,7 @@ export default function Welcome({ navigation }) {
                     width={'90%'}
                     height={60}
                     borderRadius={10}
-                    top={575}
+                    top={'71%'}
                     fontWeight={'600'}
                     fontSize={25}
                     onPress={() => navigation.push('SignUp')}

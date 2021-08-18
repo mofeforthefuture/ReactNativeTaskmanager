@@ -1,0 +1,102 @@
+import React from 'react'
+import { COLORS } from '../constants/themes.js'
+import { View, Text, SafeAreaView, TouchableOpacity, TextInput, ScrollView } from 'react-native'
+
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
+
+// import Icon from 'react-native-ionicons'
+
+import { faEdit, faSearch, faArchive, faComments, faCog } from '@fortawesome/free-solid-svg-icons'
+
+export default function Chats() {
+    return (
+        <>
+            <SafeAreaView style={{ backgroundColor: COLORS.tabBlack, height: '10%', alignItems: 'baseline' }}>
+                <View style={{ height: '30%' }}></View>
+                <View style={{ flexDirection: 'row', width: '100%' }}>
+                    <TouchableOpacity style={{ marginLeft: '2%' }}>
+                        <Text style={{ color: COLORS.blue, fontSize: 21 }}>Edit</Text>
+                    </TouchableOpacity>
+                    {/* <Icon name="add" />r */}
+                    <TouchableOpacity style={{ position: 'absolute', left: '90%' }}>
+                        <FontAwesomeIcon icon={faEdit} size={20} color={COLORS.blue} />
+
+                    </TouchableOpacity>
+                </View>
+            </SafeAreaView>
+            <ScrollView style={{ flex: 1, backgroundColor: COLORS.tabBlack }}>
+                <View style={{
+                    flex: 1, backgroundColor: COLORS.tabBlack
+                }}>
+                    <View style={{
+                        height: '100%',
+                        width: '100%'
+                    }}>
+                        <View style={{ marginBottom: 10, }}>
+                            <Text
+                                style={{
+                                    color: COLORS.white,
+                                    fontSize: 40,
+                                    fontWeight: '700',
+                                    marginLeft: '3%'
+                                }}>Chats</Text>
+                        </View>
+                        <View>
+                            <View
+                                style={{
+                                    marginLeft: '3%',
+                                    marginRight: '3%',
+                                    height: 30,
+                                    backgroundColor: COLORS.input,
+                                    borderRadius: 10,
+                                    paddingLeft: 12,
+                                    flexDirection: 'row',
+                                    marginBottom: 30,
+                                }}>
+                                <FontAwesomeIcon
+                                    icon={faSearch}
+                                    size={16}
+                                    color={COLORS.grey}
+                                    style={{
+                                        marginTop: 6,
+                                    }} />
+                                <TextInput
+                                    placeholder={'Search'}
+                                    style={{
+                                        padding: 5,
+                                        color: COLORS.grey
+                                    }} />
+
+                            </View>
+                            <View style={{ backgroundColor: COLORS.tabBlack, height: 50, alignItems: 'baseline' }}>
+                                <View style={{ flexDirection: 'row', width: '100%', marginBottom: 10, }}>
+                                    <TouchableOpacity style={{ marginLeft: '2%' }}>
+                                        <Text style={{ color: COLORS.blue, fontSize: 21 }}>Broadcast Lists</Text>
+                                    </TouchableOpacity>
+                                    {/* <Icon name="add" />r */}
+                                    <TouchableOpacity style={{ position: 'absolute', left: '75%' }}>
+                                        <Text style={{ color: COLORS.blue, fontSize: 21 }}>New Group</Text>
+                                    </TouchableOpacity>
+                                </View>
+                                <View style={{ backgroundColor: COLORS.input, height: 0.3, width: '100%' }}></View>
+                            </View>
+
+                            <View style={{
+                                backgroundColor: COLORS.tabBlack,
+                                height: 15, alignItems: 'center',
+                                flexDirection: 'row',
+                                justifyContent: 'flex-start'
+                            }}>
+                                <FontAwesomeIcon icon={faArchive} size={15} color={COLORS.grey} style={{ marginLeft: '10%' }} />
+                                <View>
+                                    <Text style={{ color: COLORS.white, fontWeight: '700', fontSize: 16, marginLeft: '16%' }}>Archived</Text>
+                                </View>
+                            </View>
+                            <View style={{ backgroundColor: COLORS.input, height: 0.3, width: '81%', alignSelf: 'flex-end', marginTop: 10 }}></View>
+                        </View>
+                    </View>
+                </View>
+            </ScrollView>
+        </>
+    )
+}

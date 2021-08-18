@@ -23,29 +23,29 @@ export default function Login({ navigation }) {
     const [isVisible, setIsVisible] = useState(false)
 
     const login = async (value) => {
-        setIsVisible(true)
-        await fetch('https://enigmatic-plains-12808.herokuapp.com/user/login', {
-            method: 'POST',
-            body: JSON.stringify(value),
-            headers: {
-                'Accept': 'application/json',
-                'Content-type': 'application/json'
-            },
-        }).then(res => res.json())
-            .then(data => {
-                if (data) {
-                    data = data[0]
-                    console.log('...response Obj', data)
-                    setUserDetails(data);
-                    setIsVisible(false)
-                } else {
-                    console.log('error')
-                }
-            }).catch(error => {
-                console.log('...error', error);
-            })
+        // setIsVisible(true)
+        // await fetch('https://enigmatic-plains-12808.herokuapp.com/user/login', {
+        //     method: 'POST',
+        //     body: JSON.stringify(value),
+        //     headers: {
+        //         'Accept': 'application/json',
+        //         'Content-type': 'application/json'
+        //     },
+        // }).then(res => res.json())
+        //     .then(data => {
+        //         if (data) {
+        //             data = data[0]
+        //             console.log('...response Obj', data)
+        //             setUserDetails(data);
+        //             setIsVisible(false)
+        //         } else {
+        //             console.log('error')
+        //         }
+        //     }).catch(error => {
+        //         console.log('...error', error);
+        //     })
 
-        navigation.navigate('Main')
+        navigation.navigate('Whatsapp')
     }
 
     const setUserDetails = async (data) => {

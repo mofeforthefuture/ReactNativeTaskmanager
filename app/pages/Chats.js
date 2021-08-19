@@ -1,12 +1,11 @@
 import React from 'react'
 import { COLORS } from '../constants/themes.js'
-import Icon from 'react-native-ionicons';
+// import { Ionicons } from '@expo/vector-icons';
 import { View, Text, SafeAreaView, TouchableOpacity, TextInput, ScrollView, Image } from 'react-native'
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 
 import dp from '../assets/Dp.jpeg'
 
-// import Icon from 'react-native-ionicons'
 
 import {
     faArchive,
@@ -91,6 +90,8 @@ export function Chat({ delivered, muted, newChat, pinned, read, sent, sticker })
                                 left: sticker ? '230%' : '170%',
                                 flexDirection: 'row'
                             }}>
+                            {/* <Ionicons name="create-outline" size={10} color="white" /> */}
+
                             {muted ? <FontAwesomeIcon icon={faVolumeOff} size={14} color={COLORS.grey} /> : <></>}
                             {pinned ? <FontAwesomeIcon icon={faThumbtack} size={14} color={COLORS.grey} /> : <></>}
                             {newChat ? <View style={{ height: 16, width: 16, backgroundColor: COLORS.blue, borderRadius: 8, alignItems: 'center', }}>
@@ -226,7 +227,6 @@ export default function Chats() {
                                 newChat={1}
                                 sticker={'Sticker'}
                             />
-                            <Icon name="camera" size={40} color="red" />
                         </View>
                     </View>
                 </View>
